@@ -32,18 +32,20 @@ Authenticate a user with username and password.
   lastName: string;
   gender: string;
   image: string;
-  token: string;
-  refreshToken?: string;
+  accessToken: string;
+  refreshToken: string;
 }
 ```
+
+**Note:** The API returns `accessToken` which is automatically mapped to `token` in the Redux state.
 
 **Example:**
 ```typescript
 const [login, { isLoading, error }] = useLoginMutation();
 
 await login({ 
-  username: "kminchelle", 
-  password: "0lelplR" 
+  username: "emilys", 
+  password: "emilyspass" 
 }).unwrap();
 ```
 
@@ -63,10 +65,12 @@ Refresh the access token using a refresh token.
 **Response:**
 ```typescript
 {
-  token: string;
+  accessToken: string;
   refreshToken: string;
 }
 ```
+
+**Note:** The API returns `accessToken` which is automatically mapped to `token` in the Redux state.
 
 **Example:**
 ```typescript
@@ -319,10 +323,12 @@ interface AuthResponse {
   lastName: string;
   gender: string;
   image: string;
-  token: string;
-  refreshToken?: string;
+  accessToken: string;
+  refreshToken: string;
 }
 ```
+
+**Note:** The API returns `accessToken`, but it's stored as `token` in Redux state for consistency.
 
 ### `User`
 

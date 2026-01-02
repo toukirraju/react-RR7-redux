@@ -26,6 +26,14 @@ Enterprise-grade folder structure documentation:
 - Feature-based architecture
 - Route definitions
 
+### [Routing Guide](./routing.md)
+Complete guide to React Router v7 file-based routing:
+- Route file structure
+- Layout routes
+- Dynamic routes
+- Route guards
+- **Important: Default exports required**
+
 ## Quick Start
 
 ### Authentication Flow
@@ -114,8 +122,8 @@ The application uses the [DummyJSON API](https://dummyjson.com/docs/auth) for:
 - User management
 
 ### Demo Credentials
-- **Username**: `kminchelle`
-- **Password**: `0lelplR`
+- **Username**: `emilys`
+- **Password**: `emilyspass`
 
 ## Development
 
@@ -139,11 +147,13 @@ npm run typecheck
 
 ## Best Practices
 
-1. **Always use typed hooks**: `useAppDispatch` and `useAppSelector`
-2. **Use selectors**: Prefer memoized selectors over direct state access
-3. **Handle loading states**: Always check `isLoading` before rendering data
-4. **Error handling**: Provide user-friendly error messages
-5. **Token management**: Let the base API handle token refresh automatically
+1. **Always use default exports for routes**: Route components must export default
+2. **Always use typed hooks**: `useAppDispatch` and `useAppSelector`
+3. **Use selectors**: Prefer memoized selectors over direct state access
+4. **Handle loading states**: Always check `isLoading` before rendering data
+5. **Error handling**: Provide user-friendly error messages
+6. **Token management**: Let the base API handle token refresh automatically
+7. **Layout routes**: Use `Outlet` to render child routes in layouts
 
 ## Support
 

@@ -58,6 +58,8 @@ The `authApi.ts` provides the following endpoints:
 
 All endpoints use the base API which handles token management automatically.
 
+**Important:** The DummyJSON API returns `accessToken` in the response, which is automatically mapped to `token` in the Redux state for consistency.
+
 ### 3. Auth State Management
 
 The `authSlice.ts` manages:
@@ -86,8 +88,8 @@ function LoginPage() {
   const handleLogin = async () => {
     try {
       await login({ 
-        username: "kminchelle", 
-        password: "0lelplR" 
+        username: "emilys", 
+        password: "emilyspass" 
       }).unwrap();
       navigate("/dashboard");
     } catch (err) {
@@ -198,8 +200,8 @@ The system uses the following DummyJSON endpoints:
 
 ### Demo Credentials
 
-- Username: `kminchelle`
-- Password: `0lelplR`
+- Username: `emilys`
+- Password: `emilyspass`
 
 ## State Persistence
 
@@ -231,7 +233,7 @@ The system handles various error scenarios:
 To test the authentication system:
 
 1. Navigate to `/login`
-2. Use demo credentials: `kminchelle` / `0lelplR`
+2. Use demo credentials: `emilys` / `emilyspass`
 3. After login, navigate to protected routes
 4. Tokens are automatically refreshed when they expire
 5. Test logout functionality

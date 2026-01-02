@@ -1,30 +1,49 @@
 app/
 ├── lib/                        # Redux & Global Config
-│   ├── redux/
-│   │   ├── store.ts            # Store + Persistor
-│   │   ├── rootReducer.ts      # Reducers + SSR-Safe Persist Config
-│   │   └── hooks.ts            # Typed useAppDispatch/Selector
+│   └── redux/
+│       ├── baseApi.ts          # Base query with refresh token logic
+│       ├── store.ts            # Store + Persistor
+│       ├── rootReducer.ts      # Reducers + SSR-Safe Persist Config
+│       └── hooks.ts            # Typed useAppDispatch/Selector
 ├── features/                   # Domain Logic (Slices & API)
 │   ├── auth/
-│   │   └── authSlice.ts
+│   │   ├── authApi.ts          # Auth API endpoints (RTK Query)
+│   │   ├── authSlice.ts        # Auth state slice
+│   │   └── authSelectors.ts    # Auth selectors
 │   └── products/
 │       ├── productsApi.ts      # RTK Query for product data
 │       └── productsSlice.ts
 ├── components/                 # Shared UI Components
 │   ├── layouts/                # Shared Layout Wrappers
-│   └── ui/                     # Atomic components (Buttons, etc.)
+│   │   ├── AuthLayout.tsx     # Authenticated layout with SideNav
+│   │   └── PublicLayout.tsx   # Public pages layout
+│   └── ui/                     # Atomic components
+│       ├── Button.tsx          # Reusable button component
+│       └── SideNav.tsx         # Side navigation component
 ├── pages/                      # Pure UI Page Views (Business Logic)
 │   ├── dashboard/
 │   │   └── DashboardPage.tsx
 │   ├── products/
 │   │   ├── ProductListPage.tsx
 │   │   └── ProductDetailsPage.tsx  # Used for Dynamic Slugs
-│   └── auth/
-│       └── LoginPage.tsx
+│   ├── auth/
+│   │   └── LoginPage.tsx
+│   ├── profile/
+│   │   └── ProfilePage.tsx
+│   ├── analytics/
+│   │   └── AnalyticsPage.tsx
+│   └── settings/
+│       └── SettingsPage.tsx
 ├── routes/                     # Route Definitions (File-based)
-│   ├── _auth.tsx               # Auth Layout Guard
+│   ├── _auth.tsx               # Auth Layout (exports default Layout)
 │   ├── _auth.dashboard.tsx     # /dashboard
 │   ├── _auth.products._index.tsx # /products (List)
 │   ├── _auth.products.$id.tsx  # /products/:id (Dynamic Slug)
-│   └── _public.login.tsx       # /login
+│   ├── _auth.profile.tsx       # /profile
+│   ├── _auth.analytics.tsx     # /analytics
+│   ├── _auth.settings.tsx      # /settings
+│   ├── _public.login.tsx       # /login
+│   ├── home.tsx                # / (root route)
+│   └── $.tsx                   # Catch-all 404 route
+├── routes.ts                   # Route configuration
 └── root.tsx                    # Entry Point
