@@ -1,14 +1,15 @@
-import {
-  isRouteErrorResponse,
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from "react-router";
-
+import { Links, Meta, Outlet, Scripts,isRouteErrorResponse, ScrollRestoration } from "react-router";
 import type { Route } from "./+types/root";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import {  createTheme, Loader, Center, mantineHtmlProps, ColorSchemeScript } from "@mantine/core";
+import "@mantine/core/styles.css";
+import { store, persistor } from "~/lib/redux/store";
 import "./app.css";
+import { AppTheme } from "./lib/app-theme";
+
+const theme = createTheme({});
+
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,17 +24,32 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" {...mantineHtmlProps}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <ColorSchemeScript />
         <Meta />
         <Links />
       </head>
       <body>
-        {children}
+        <AppTheme theme={theme}>
+          <Provider store={store}>
+            <PersistGate 
+              loading={
+                <Center h="100vh">
+                  <Loader size="lg" />
+                </Center>
+              } 
+              persistor={persistor}
+            >
+              {children}
+            </PersistGate>
+          </Provider>
+        </AppTheme>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -44,6 +60,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return <Outlet />;
 }
+
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
