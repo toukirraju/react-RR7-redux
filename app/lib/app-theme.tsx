@@ -10,8 +10,8 @@ import {
       brand: DEFAULT_THEME.colors.blue,
     },
     primaryColor: "brand",
-  })
+  });
   
-  export function AppTheme({ children, theme = appTheme,...props }: MantineProviderProps) {
-    return <MantineProvider theme={theme} {...props}>{children}</MantineProvider>
+  export function AppTheme({ children, theme = appTheme, ...props }: MantineProviderProps) {
+    return <MantineProvider theme={theme} defaultColorScheme="light" {...props}>{children}</MantineProvider>;
   }
