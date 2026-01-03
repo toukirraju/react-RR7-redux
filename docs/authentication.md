@@ -205,11 +205,38 @@ The system uses the following DummyJSON endpoints:
 
 ## State Persistence
 
-Authentication state is persisted to localStorage using `redux-persist`:
+Authentication state is persisted to cookies using `redux-persist` with `redux-persist-cookie-storage`:
 
-- Tokens are stored securely in localStorage
-- State is rehydrated on app load
+- Tokens are stored securely in cookies (not localStorage)
+- Cookies configured with 1-year expiration and secure flag
+- State is rehydrated on app load from cookies
 - User remains logged in across page refreshes
+- Better SSR compatibility compared to localStorage
+
+### Cookie Storage Configuration
+
+The authentication state is persisted using cookie storage configured in `rootReducer.ts`:
+
+```typescript
+new CookieStorage(Cookies, {
+  expiration: {
+    default: 365 * 86400,  // 1 year
+  },
+  setCookieOptions: {
+    path: "/",
+    secure: true,          // HTTPS only in production
+  },
+})
+```
+
+### Benefits of Cookie Storage
+
+- **SSR Compatible**: Works seamlessly with server-side rendering
+- **Security**: Can use secure, httpOnly, and sameSite flags
+- **Automatic Transmission**: Cookies sent automatically with requests
+- **Cross-Subdomain**: Can be configured to work across subdomains
+
+For detailed Redux setup and persist configuration, see [Redux Setup Documentation](./redux_setup.md).
 
 ## Security Considerations
 

@@ -4,8 +4,11 @@ app/
 │   └── redux/
 │       ├── baseApi.ts          # Base query with refresh token logic
 │       ├── store.ts            # Store + Persistor
-│       ├── rootReducer.ts      # Reducers + SSR-Safe Persist Config
-│       └── hooks.ts            # Typed useAppDispatch/Selector
+│       ├── rootReducer.ts      # Reducers + SSR-Safe Persist Config (Cookie Storage)
+│       ├── hooks.ts            # Typed useAppDispatch/Selector
+│       └── types/              # TypeScript declaration files
+│           ├── redux-persist-cookie-storage.d.ts
+│           └── cookies-js.d.ts
 ├── features/                   # Domain Logic (Slices & API)
 │   ├── auth/
 │   │   ├── authApi.ts          # Auth API endpoints (RTK Query)

@@ -4,10 +4,20 @@ This directory contains comprehensive documentation for the React Router v7 + Re
 
 ## Documentation Files
 
+### [Redux Setup](./redux_setup.md)
+Complete guide to Redux configuration with persist and cookie storage:
+- Store configuration
+- Cookie storage setup
+- Persist configuration
+- Typed hooks
+- SSR safety
+- Usage examples
+
 ### [Authentication System](./authentication.md)
 Complete guide to the authentication system, including:
 - Architecture overview
 - Token refresh mechanism
+- Cookie storage persistence
 - Usage examples
 - Security considerations
 - Troubleshooting guide
@@ -95,9 +105,10 @@ function ProductsList() {
 - Type-safe API endpoints
 
 ### ✅ State Persistence
-- Redux Persist integration
+- Redux Persist integration with cookie storage
 - Survives page refreshes
 - SSR-safe implementation
+- Secure cookie configuration
 
 ### ✅ Enterprise Architecture
 - Feature-based folder structure
