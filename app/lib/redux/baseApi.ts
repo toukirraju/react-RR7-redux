@@ -1,4 +1,4 @@
-import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { BaseQueryFn, FetchArgs, FetchBaseQueryError } from "@reduxjs/toolkit/query/react";
 import { Mutex } from "async-mutex";
 import type { RootState } from "./store";
@@ -77,5 +77,9 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
   return result;
 };
 
-export default baseQueryWithReauth;
+export const baseApi = createApi({
+  baseQuery: baseQueryWithReauth,
+  tagTypes: ["Auth", "Product"],
+  endpoints: () => ({}),
+});
 

@@ -4,8 +4,7 @@ import {
   FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER 
 } from "redux-persist";
 import { persistedReducer } from "./rootReducer";
-import { productsApi } from "~/features/products/productsApi";
-import { authApi } from "~/features/auth/authApi";
+import { baseApi } from "./baseApi";
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -14,7 +13,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(productsApi.middleware, authApi.middleware),
+    }).concat(baseApi.middleware),
 });
 
 export const persistor = persistStore(store);

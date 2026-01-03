@@ -12,7 +12,7 @@ import {
   ScrollArea,
   Paper,
 } from "@mantine/core";
-import { IconBook, IconCode, IconRoute, IconFolder } from "@tabler/icons-react";
+import { IconBook, IconCode, IconRoute, IconFolder, IconDatabase } from "@tabler/icons-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useNavigate } from "react-router";
@@ -20,6 +20,7 @@ import { useAppSelector } from "~/lib/redux/hooks";
 import { selectIsAuthenticated } from "~/features/auth/authSelectors";
 
 import readmeMd from "../../../docs/README.md?raw";
+import reduxSetupMd from "../../../docs/redux_setup.md?raw";
 import authenticationMd from "../../../docs/authentication.md?raw";
 import apiReferenceMd from "../../../docs/api_reference.md?raw";
 import routingMd from "../../../docs/routing.md?raw";
@@ -27,6 +28,7 @@ import folderStructureMd from "../../../docs/folder_structure.md?raw";
 
 const docsFiles = {
   readme: readmeMd,
+  redux: reduxSetupMd,
   authentication: authenticationMd,
   api: apiReferenceMd,
   routing: routingMd,
@@ -89,6 +91,9 @@ export function HomePage() {
               <Tabs.Tab value="readme" leftSection={<IconBook size="1rem" />}>
                 Overview
               </Tabs.Tab>
+              <Tabs.Tab value="redux" leftSection={<IconDatabase size="1rem" />}>
+                Redux Setup
+              </Tabs.Tab>
               <Tabs.Tab value="authentication" leftSection={<IconCode size="1rem" />}>
                 Authentication
               </Tabs.Tab>
@@ -108,6 +113,16 @@ export function HomePage() {
                 <div className="markdown-content" style={{ paddingRight: "1rem" }}>
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {docsFiles.readme}
+                  </ReactMarkdown>
+                </div>
+              </ScrollArea>
+            </Tabs.Panel>
+
+            <Tabs.Panel value="redux" pt="lg">
+              <ScrollArea h={600} type="auto">
+                <div className="markdown-content" style={{ paddingRight: "1rem" }}>
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {docsFiles.redux}
                   </ReactMarkdown>
                 </div>
               </ScrollArea>

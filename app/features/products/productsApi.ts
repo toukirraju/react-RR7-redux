@@ -1,5 +1,5 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import baseQueryWithReauth from "~/lib/redux/baseApi";
+
+  import { baseApi } from "~/lib/redux/baseApi";
 
 interface Product {
   id: number;
@@ -22,10 +22,7 @@ interface ProductsResponse {
   limit: number;
 }
 
-export const productsApi = createApi({
-  reducerPath: "productsApi",
-  baseQuery: baseQueryWithReauth,
-  tagTypes: ["Product"],
+export const productsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<ProductsResponse, { skip?: number; limit?: number }>({
       query: ({ skip = 0, limit = 30 }) => `/products?skip=${skip}&limit=${limit}`,
