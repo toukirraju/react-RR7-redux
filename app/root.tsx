@@ -6,7 +6,7 @@ import {  createTheme, Loader, Center, mantineHtmlProps, ColorSchemeScript } fro
 import "@mantine/core/styles.css";
 import { store, persistor } from "~/lib/redux/store";
 import "./app.css";
-import { AppTheme } from "./lib/app-theme";
+import { AppTheme } from "./providers";
 
 const theme = createTheme({});
 

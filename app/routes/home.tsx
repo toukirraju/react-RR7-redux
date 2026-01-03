@@ -1,6 +1,5 @@
 import type { Route } from "./+types/home";
-import { Navigate } from "react-router";
-import { useAppSelector } from "~/lib/redux/hooks";
+import { HomePage } from "~/pages/home/HomePage";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -10,10 +9,5 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const token = useAppSelector((state) => state.auth.token);
-  if (token) {
-    return <Navigate to="/dashboard" replace />;
-  }
-  
-  return <Navigate to="/login" replace />;
+  return <HomePage />;
 }

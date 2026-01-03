@@ -1,13 +1,10 @@
 import { Container } from "@mantine/core";
+import { Outlet } from "react-router";
 
-interface PublicLayoutProps {
-  children: React.ReactNode;
-}
-
-export function PublicLayout({ children }: PublicLayoutProps) {
+export function PublicLayout() {
   return (
     <Container size="sm">
-      {children}
+      <Outlet />
     </Container>
   );
 }
